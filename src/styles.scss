@@ -1,1 +1,72 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single CSS file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+
+@include mat.core();
+
+// Define your custom color palette
+$custom-orange: (
+  50: #fff3e0,
+  100: #ffe0b2,
+  200: #ffcc80,
+  300: #ffb74d,
+  400: #ffa726,
+  500: #202120,
+  600: #fb8c00,
+  700: #f57c00,
+  800: #ef6c00,
+  900: #e65100,
+  A100: #ffd180,
+  A200: #ffab40,
+  A400: #ff9100,
+  A700: #ff6d00,
+  contrast: (
+    50: #000000b8,
+    100: #000000b8,
+    200: #000000b8,
+    300: #000000b8,
+    400: #000000b8,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: #000000b8,
+    A200: #000000b8,
+    A400: #000000b8,
+    A700: white,
+  )
+);
+
+// Define the palettes for your theme
+$kanban-dashboard-primary: mat.define-palette($custom-orange);
+$kanban-dashboard-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$kanban-dashboard-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object
+$kanban-dashboard-theme: mat.define-dark-theme((
+  color: (
+    primary: $kanban-dashboard-primary,
+    accent: $kanban-dashboard-accent,
+    warn: $kanban-dashboard-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app
+@include mat.all-component-themes($kanban-dashboard-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: sofia-pro, sans-serif; }
+a {
+    color: white;
+    text-decoration: none;
+}
